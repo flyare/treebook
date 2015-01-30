@@ -1,4 +1,4 @@
-<%= form_for(@status, html: {class: 'form-horizontal'}) do |f| %>
+<%= simple_form_for(@status, html: {class: 'form-horizontal'}) do |f| %>
     <% if @status.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@status.errors.count, "error") %> prohibited this status from being saved:</h2>
@@ -10,10 +10,31 @@
           </ul>
         </div>
     <% end %>
-    <div class="form-group">
+    <!--<div class="form-group">
       <%= f.label :user_id, class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.text_field :user_id, class: "form-control" %>
+      </div>
+    </div>-->
+    <div class="form-group">
+      <%= f.label :user_id, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <select class="form-control input-lg">
+          <option value="">Please select</option>
+          <% @users.each do |u| %>
+              <% if u.nil? %>
+                  <% if u.id == @status.user.id %>
+                      <option value="<%= u.id %>" selected>
+                        <%= u.full_name %>
+                      </option>
+                  <% else %>
+                      <option value="<%= u.id %>">
+                        <%= u.full_name %>
+                      </option>
+                  <% end %>
+              <% end %>
+          <% end %>
+        </select>
       </div>
     </div>
     <div class="form-group">
