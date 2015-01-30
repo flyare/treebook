@@ -20,9 +20,11 @@
   </div>
 </div>
 <div class="container">
-  <p class="notice"><%= notice %></p>
+  <% if notice != nil %>
+      <p><%= notice %></p>
 
-  <p class="alert"><%= alert %></p>
+      <p><%= alert %></p>
+  <% end %>
   <%= yield %>
 </div>
 
