@@ -16,26 +16,14 @@
         <%= f.text_field :user_id, class: "form-control" %>
       </div>
     </div>-->
-    <div class="form-group">
-      <%= f.label :user_id, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <select class="form-control input-lg">
-          <option value="">Please select</option>
-          <% @users.each do |u| %>
-              <% if u.nil? %>
-                  <% if u.id == @status.user.id %>
-                      <option value="<%= u.id %>" selected>
-                        <%= u.full_name %>
-                      </option>
-                  <% else %>
-                      <option value="<%= u.id %>">
-                        <%= u.full_name %>
-                      </option>
-                  <% end %>
-              <% end %>
-          <% end %>
-        </select>
-      </div>
+
+    <%= f.input :user_id, collection: User.all, label_method: :full_name %>
+    <%= f.input :content %>
+    <%= f.button :submit %>
+
+
+    <!--<div class="form-group">
+
     </div>
     <div class="form-group">
       <%= f.label :content, class: "col-sm-2 control-label" %>
@@ -47,5 +35,5 @@
       <div class="col-sm-offset-2 col-sm-10">
         <%= f.submit(class:"btn btn-success") %>
       </div>
-    </div>
+    </div>-->
 <% end %>
